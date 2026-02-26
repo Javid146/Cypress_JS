@@ -1,0 +1,45 @@
+create node project (also creates package.json file). in empty folder:                      npm init y
+install cypress:                                                                            npm install cypress --save-dev
+create cypress project structure and open test runner popup:                                npx cypress open
+
+project structure:
+cypress/e2e	        -> Your test files go here
+cypress/fixtures	-> Test data (JSON files)
+cypress/support	    -> Reusable commands & setup
+cypress.config.js	-> Cypress configuration
+package.json	    -> Node project settings
+
+
+
+/// <reference types="cypress" />                                                   -> add this line in commands.js to get access to cypress commands
+
+
+how to use xpath in cypress:
+1. npm install -D cypress-xpath                                                     -> install xpath
+2. /// <reference types="cypress-xpath" />                                          -> add this line in commands.js
+3. require('cypress-xpath')                                                         -> add in e2e.js
+
+
+npx cypress open                                                                    -> opens cypress
+npx cypress run                                                                     -> runs test directly
+npx cypress run --spec cypress/e2e/MyTest.cy.js --browser chrome --headed           -> runs specified test file on headed chrome
+
+
+npm run                                                                             -> to run commands in scripts in package.json
+"javids_edge_headed": "cypress run --spec cypress/e2e/Dropdowns.cy.js --headed --browser edge"
+npm run javids_edge_headed
+
+
+
+set config from CLI:
+P.S. for --config there shouldn't be space after comma. 
+powershell:
+npx cypress run --spec cypress/e2e/Dropdowns.cy.js --config "pageLoadTimeout=10000,watchForFileChanges=false"
+CMD:
+npx cypress run --spec cypress/e2e/Dropdowns.cy.js --config pageLoadTimeout=10000,watchForFileChanges=false
+
+
+
+cypress info:
+npx cypress -v
+npx cypress info

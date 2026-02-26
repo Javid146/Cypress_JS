@@ -1,0 +1,26 @@
+{
+  "name": "cypress_automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "echo I am PreTest",
+    "posttest": "echo I am PostTest",
+    "test": "echo I am Test",
+    "javids_edge_headed": "cypress run --spec cypress/e2e/Dropdowns.cy.js --headed --browser edge"
+  },
+  "author": "Javid",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cypress": "^15.9.0",
+    "cypress-downloadfile": "^1.2.4",
+    "xml2js": "^0.6.2"
+  },
+  "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.3.1",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-iframe": "^1.0.1",
+    "cypress-mochawesome-reporter": "^4.0.2",
+    "cypress-xpath": "^2.0.1"
+  }
+}

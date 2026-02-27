@@ -6,6 +6,8 @@
     "pretest": "echo I am PreTest",
     "posttest": "echo I am PostTest",
     "test": "echo I am Test",
+    "cy:run": "cypress run",
+    "cy:parallel": "cypress:parallel -s cy:run -t 2",
     "javids_edge_headed": "cypress run --spec cypress/e2e/Dropdowns.cy.js --headed --browser edge"
   },
   "author": "Javid",
@@ -14,6 +16,7 @@
   "dependencies": {
     "cypress": "^15.9.0",
     "cypress-downloadfile": "^1.2.4",
+    "cypress-parallel": "^0.15.0",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {

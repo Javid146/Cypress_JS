@@ -43,3 +43,57 @@ npx cypress run --spec cypress/e2e/Dropdowns.cy.js --config pageLoadTimeout=1000
 cypress info:
 npx cypress -v
 npx cypress info
+
+
+
+ * ============================================================
+ *  Cypress Parallel Execution Setup (Using cypress-parallel)
+ * ============================================================
+ *
+ * STEP 1️⃣  Install cypress-parallel
+ *
+ * Run this once in your project:
+ *
+ *    npm install --save-dev cypress-parallel
+ *
+ * STEP 2️⃣  Add the following scripts to package.json
+ *
+ *    "scripts": {
+ *      "cy:run": "cypress run",
+ *      "cy:parallel": "cypress-parallel -s cy:run -t 2"
+ *    }
+ *
+ * WHAT THESE SCRIPTS DO:
+ *
+ * 1. "cy:run"
+ *    - Runs all Cypress tests normally (single thread).
+ *    - Equivalent to running: cypress run
+ *
+ * 2. "cy:parallel"
+ *    - Uses the cypress-parallel package.
+ *    - -s cy:run  → tells it which npm script to execute.
+ *    - -t 2       → runs tests using 2 parallel threads.
+ *
+ *    Internally it:
+ *      - Scans the default Cypress folder: cypress/e2e
+ *      - Collects all spec files
+ *      - Splits them into 2 groups
+ *      - Runs each group in a separate thread
+ *
+ * STEP 3️⃣  How to Run Tests
+ *
+ * Normal run (single thread):
+ *
+ *    npm run cy:run
+ *
+ * Parallel run (2 threads):
+ *
+ *    npm run cy:parallel
+ *
+ * OPTIONAL:
+ * To increase number of threads, change -t value.
+ *
+ * Example for 4 threads:
+ *
+ *    "cy:parallel": "cypress-parallel -s cy:run -t 4"
+ 

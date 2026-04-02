@@ -53,4 +53,8 @@ Cypress.Commands.add("loginOrangeHrm", (user, pwd) => {
     cy.get("button[type='submit']").click()
 })
 
+Cypress.Commands.add('clickLaptopLnk', (laptopName)=>{
+    cy.get("#"+laptopName).click()
+})
+
 require('cypress-downloadfile/lib/downloadFileCommand')

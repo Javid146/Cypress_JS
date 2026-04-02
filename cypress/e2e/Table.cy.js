@@ -1,9 +1,7 @@
 describe("Table", () => {
 
-
     beforeEach("visit app page before each test", () => {
         cy.visit("https://testautomationpractice.blogspot.com/")
-
     })
 
     it('check num of rows/columns', () => {
@@ -21,11 +19,11 @@ describe("Table", () => {
     it('read all rows/columns data on 1st page', () => {
 
         cy.get("#productTable tbody tr")
-            .each(($row, index, $rows) => {
+            .each(($row) => {
 
                 cy.wrap($row).within(() => {
 
-                    cy.get("td").each(($cell, index, $cells) => {
+                    cy.get("td").each(($cell) => {
                         cy.log($cell.text())
                     })
                 })
@@ -67,10 +65,10 @@ describe("Table", () => {
 
     it('pagination - first 4 pages only', () => {
 
-        cy.get("#pagination li").its("length").then((size) => {
+        cy.get("#pagination li").then((size) => {
 
             // Only loop up to 4 pages or the total number of pages
-            const pagesToCheck = Math.min(4, size)
+            const pagesToCheck = Math.min(4, size.length)
 
             for (let i = 0; i < pagesToCheck; i++) {
                 // Select the i-th page (0-based index)

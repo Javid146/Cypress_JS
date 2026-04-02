@@ -17,6 +17,7 @@
     "cypress": "^15.9.0",
     "cypress-downloadfile": "^1.2.4",
     "cypress-parallel": "^0.15.0",
+    "cypress-real-events": "^1.15.0",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {

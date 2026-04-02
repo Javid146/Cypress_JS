@@ -5,7 +5,7 @@ describe("Fixtures 2", () => {
     //access multiple data blocks in fixtures for multiple tests 
     setsOfData.forEach((testData) => {
 
-        it.only('test with multiple sets of data 2', () => {
+        it('test with multiple sets of data 2', () => {
 
             //for each loop to assert test data in orangHrm.json2. this test runs 3 times as json file has 3 sets of data
             //this runs sets data within separate it blocks.

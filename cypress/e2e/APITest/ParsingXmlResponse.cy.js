@@ -28,6 +28,8 @@ it('creating pet', () => {
      cy.task() is a Cypress command used to execute code in the Node.js environment
      (outside of the browser). Since xml2js is a Node-only library, it cannot run
      directly inside Cypress test files (which run in the browser).
+     
+     cy.task() -> is good for File system, DB, parsing, scripts
 
      'parseXml' is a custom task that we defined inside cypress.config.js
      using setupNodeEvents(). It uses xml2js to convert XML into a JavaScript object.

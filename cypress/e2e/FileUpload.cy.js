@@ -36,12 +36,46 @@ describe("File Upload", () => {
     })
 
 
+    it.only('multiple with regular each() assertion', () => {
+
+        cy.visit("https://davidwalsh.name/demo/multiple-file-upload.php")
+
+        const files = ["APT-Protocols-Report.pdf", "citizenship discover-large.pdf"]
+        cy.get("#filesToUpload").attachFile(files)
+        // or we use selectFile() to upload. It requires file path that's why we use map to transform file name to cypress/fixtures/<fileName>
+        //  cy.get("#filesToUpload").selectFile(files.map(f => `cypress/fixtures/${f}`))
+        cy.get("#fileList").should("be.visible")
+
+        cy.get("#fileList li").each((textVal, index) => {
+            expect(textVal.text()).to.include(files[index])
+        })
+    })
+
+
+    it('multiple using deep.equal assertion', () => {
+
+        cy.visit("https://davidwalsh.name/demo/multiple-file-upload.php")
+
+        const files = ["APT-Protocols-Report.pdf", "citizenship discover-large.pdf"]
+
+        cy.get("#filesToUpload")
+            .selectFile(files.map(f => `cypress/fixtures/${f}`))
+
+        cy.get("#fileList li")
+            .then($lis => {
+                const uploadedFiles = [...$lis].map(li => li.innerText)
+                expect(uploadedFiles).to.deep.equal(files)
+            })
+    })
+
+
     it.only("file upload -shadow dom", () => {
         cy.visit("http://htmlelements.com/demos/fileupload/shadow-dom/index.htm")
 
         //approach 1: get element in shadow dom and interact using { includeShadowDom: true }
         cy.get("input[smart-id='browseInput']", { includeShadowDom: true })
             .attachFile("APT-Protocols-Report.pdf")
+            
         cy.get("smart-file-upload:nth-child(1) > div:nth-child(1) > div:nth-child(4) > smart-button:nth-child(1) > button:nth-child(1)", { includeShadowDom: true }).click()
         cy.get("div[smart-id='selectedFiles']", { includeShadowDom: true }).should("be.visible")
 

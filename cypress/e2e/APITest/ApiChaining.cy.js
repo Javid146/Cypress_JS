@@ -19,6 +19,7 @@ it('api chaining: post, put, delete with gorest api', () => {
     })
         .then((response) => {
             expect(response.status).eq(201)
+            
             const createdUserId = response.body.id
             console.log("createdUserId: " + createdUserId)
 

@@ -5,6 +5,30 @@ const xml2js = require('xml2js')
 
 module.exports = defineConfig({
 
+  /**
+ * The "expose" block is used to share **public, non-sensitive configuration values**
+ * from Cypress config to your tests at runtime.
+ * 
+ * Key points:
+ * - These values are **not secret**, unlike cy.env() values from cypress.env.json.
+ * - Useful for things like **feature flags, plugin settings, or runtime toggles**.
+ * - Can be accessed in tests using Cypress.config().expose.<key>.
+ * - Arbitrary names: featureFlag and pluginConfig are just example keys; you can name them anything.
+ * - Scope: global, available in all specs; persists only while the browser is open.
+ * 
+ * Difference from "env":
+ * - env: used for environment variables or sensitive info like API keys, credentials.
+ * - expose: only for public, non-sensitive flags/config that tests can safely read.
+ * 
+ * Example access in tests:
+ *   if (Cypress.config().expose.featureFlag) { ... }
+ *   cy.log(Cypress.config().expose.pluginConfig)
+ */
+  expose: {
+    featureFlag: true,
+    pluginConfig: 'value1'
+  },
+
   // Cypress supports two testing types:
   // 1) e2e (End-to-End testing)
   // 2) component (Component testing)
@@ -36,14 +60,16 @@ module.exports = defineConfig({
     {
       "runMode": 2
     },
-    "env":
+    "env": //public data, sensitive data is kept in cypress.env.json
     {
       "orangeHrmUrl": "https://opensource-demo.orangehrmlive.com",  //how to from CLI: npx cypress run --env orangeHrmUrl=https://staging.orangehrmlive.com
-      "gorestBaseUrl": "https://gorest.co.in/"
+      "gorestBaseUrl": "https://gorest.co.in/",
+      "testAutomPracticeUrl": "https://testautomationpractice.blogspot.com/",
     },
 
     /*
       setupNodeEvents() runs in the Node process (backend), NOT inside the browser where tests execute. It runs once when Cypress starts.
+      anything running inside of it is plugin, think of it as bridge between node.js (cypress runner) and tests in browser
 
       This is used to:
       - Register plugins

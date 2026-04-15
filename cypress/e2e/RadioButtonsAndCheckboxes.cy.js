@@ -22,7 +22,7 @@ describe("Suite", () => {
 
         cy.visit('https://testautomationpractice.blogspot.com/')
 
-        //check all boxes. -> cypress returns all elements available with get()
+        //check all boxes without using loop. -> cypress returns all elements available with get()
         cy.get(".form-check-input[type='checkbox']").check().should('be.checked')
         cy.get(".form-check-input[type='checkbox']").uncheck().should('be.not.checked')
 

@@ -50,10 +50,9 @@ describe("Cypress Async vs Synchronous Example", () => {
      */
     it("cy.get() with .then() works correctly", () => {
         cy.get('#myButton')
-            .invoke('text')         // Extract text from the element
-            .then((text) => {
-                // This runs after Cypress resolves the command
-                cy.log(text)           // Works! Logs button text
+            .invoke('text')          // Extract text from the element
+            .then((text) => {       // This runs after Cypress resolves the command
+                cy.log(text)       // Works! Logs button text
             })
     })
 

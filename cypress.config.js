@@ -1,9 +1,15 @@
-// Import defineConfig helper from Cypress
+// Import from Cypress with CommonJS. require() -> commonJS; ES module includes -> import
 const { defineConfig } = require("cypress");
 const { downloadFile } = require('cypress-downloadfile/lib/addPlugin')
 const xml2js = require('xml2js')
 
-module.exports = defineConfig({
+/*
+ESM (es module) version of import:
+import { defineConfig } from "cypress";
+import { downloadFile } from "cypress-downloadfile/lib/addPlugin";
+*/
+
+module.exports = defineConfig({ // module.export -> commonJS; export default defineConfig({}) -> ES module
 
   /**
  * The "expose" block is used to share **public, non-sensitive configuration values**
@@ -36,6 +42,8 @@ module.exports = defineConfig({
   e2e: {
     watchForFileChanges: false,
 
+    viewportHeight: 1920,
+    viewportHeight: 1080,
     // Allows Cypress commands like cy.get() to search inside Shadow DOM
     // Needed when your application uses Web Components
     includeShadowDom: true,
@@ -58,7 +66,8 @@ module.exports = defineConfig({
     reporter: 'cypress-mochawesome-reporter',
     retries:
     {
-      "runMode": 2
+      "runMode": 2, //when running tests with cypress run (CI/headless), retry a failed test up to 2 times
+      openMode: 0 //when running with cypress open, do not retry
     },
     "env": //public data, sensitive data is kept in cypress.env.json
     {
@@ -89,6 +98,7 @@ module.exports = defineConfig({
       // - Collect results
       // - Generate report files after execution
       require('cypress-mochawesome-reporter/plugin')(on)
+
       on('task', { downloadFile })
 
       on('task', {

@@ -4,8 +4,8 @@ it.only('debug/pause', () => {
 
     /*
     debug() = JavaScript debugger in the browser DevTools
-    1. debug logs found element in console, if devtools are NOT open
-    2. debug logs found element and pauses execution until you click play btn to resume if devtools are open
+    1. debug() does not log element in console, if devtools are NOT open
+    2. debug() logs element and pauses execution until you click play btn to resume if devtools are open
 
     pause() just pauses test totally until you click resume button in cy runner browser
     tester can open devtools and inspect page and interact with UI manually

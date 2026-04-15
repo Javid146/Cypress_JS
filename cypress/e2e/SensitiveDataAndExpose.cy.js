@@ -33,5 +33,4 @@ describe('Login tests using environment variables', () => {
         cy.get("[type='submit']").click()
         cy.get(".oxd-glass-button.orangehrm-upgrade-button").should('exist')
     })
-
 })

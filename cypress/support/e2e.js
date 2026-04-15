@@ -14,10 +14,9 @@
 // ***********************************************************
 
 //if you remove this line custom commands in commands.js won't load
-import './commands'
+import './commands.js' //ESM way, any code in commands.js runs before test run; it is not import X from 'module' -> because we don't need to use anything exported here
 
-//adds support for xpath usage
-require('cypress-xpath')
+import 'cypress-file-upload'
 
 Cypress.on('uncaught:exception', (err, runnable) => {
   // returning false here prevents Cypress from failing the test
@@ -38,7 +37,7 @@ The reporter must listen to test events (pass/fail)
 It needs to capture screenshots
 It attaches metadata to test results
 */
-import 'cypress-mochawesome-reporter/register'
+import 'cypress-mochawesome-reporter/register' //Module runs code on load; it is not import X from 'module' -> because we don't need to use anything exported here
 
 beforeEach(() => {
   cy.log("run this before each test in project")
